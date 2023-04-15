@@ -55,7 +55,10 @@ RUN \
   addgroup -S $GROUP_SQLITE && \
   adduser  -S $USER_SQLITE -G $GROUP_SQLITE && \
   # Fix issue #32 (CVE-2022-3996)
-  apk --no-cache upgrade
+  apk --no-cache upgrade && \
+  apk upgrade && \
+  apk add \
+  rlwrap
 
 # Set user
 USER $USER_SQLITE
