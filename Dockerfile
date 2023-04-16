@@ -58,7 +58,7 @@ RUN \
   # Fix issue #32 (CVE-2022-3996)
   apk --no-cache upgrade && \
   apk add \
-  readline \
+  readline 
 
 # Set user
 USER $USER_SQLITE
