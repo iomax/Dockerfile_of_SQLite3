@@ -29,7 +29,7 @@ RUN \
 
 # Configure and make SQLite3 binary
 RUN \
-  ./sqlite/configure --prefix=/usr && \
+  ./sqlite/configure --prefix=/usr --enable-readline&& \
   make && \
   make install && \
   # Smoke test
