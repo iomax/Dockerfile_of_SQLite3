@@ -52,7 +52,7 @@ COPY run-test.sh /run-test.sh
 ENV \
   USER_SQLITE=sqlite \
   GROUP_SQLITE=sqlite \
-  INPUTRC=/workspace
+  SQLITE_HISTORY=/workspace/.sqlite_history
 RUN \
   addgroup -S $GROUP_SQLITE && \
   adduser  -S $USER_SQLITE -G $GROUP_SQLITE && \
