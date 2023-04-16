@@ -35,7 +35,7 @@ $ docker build -t sqlite3:local https://github.com/iomax/Dockerfile_of_SQLite3.g
 Running `sqlite3` command inside the container interactively.
 
 ```shellsession
-$ docker run --rm -it -v "$(pwd):/workspace" -w /workspace iomax/sqlite3
+$ docker run --rm -it -v "$(pwd):/workspace" -w /workspace sqlite3:local
 SQLite version 3.28.0 2019-04-16 19:49:53
 Enter ".help" for usage hints.
 Connected to a transient in-memory database.
@@ -56,7 +56,7 @@ sample.db
 - Running `sqlite3 --version` command:
 
 ```shellsession
-$ docker run --rm iomax/sqlite3 sqlite3 --version
+$ docker run --rm sqlite3:local sqlite3 --version
 3.38.2 2022-03-26 13:51:10 d33c709cc0af66bc5b6dc6216eba9f1f0b40960b9ae83694c986fbf4c1d6f08f
 ```
 
@@ -65,7 +65,7 @@ $ docker run --rm iomax/sqlite3 sqlite3 --version
 ```shellsession
 $ ls
 sample.db
-$ docker run --rm -it -v "$(pwd):/workspace" iomax/sqlite3 sqlite3 /workspace/sample.db -header -column 'SELECT rowid, * FROM table_sample;'
+$ docker run --rm -it -v "$(pwd):/workspace" sqlite3:local sqlite3 /workspace/sample.db -header -column 'SELECT rowid, * FROM table_sample;'
 rowid  timestamp            description
 -----  -------------------  -----------------------
 1      2022-04-16 14:09:52  First sample data. Foo
@@ -81,7 +81,7 @@ This container includes a [simple test script](https://github.com/iomax/Dockerfi
 You can run the script to see if the container and `sqlite3` binary is working.
 
 ```shellsession
-$ docker run --rm iomax/sqlite3 /run-test.sh
+$ docker run --rm sqlite3:local /run-test.sh
 - Creating test DB ... created
 rowid  timestamp            description
 -----  -------------------  -----------------------

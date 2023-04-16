@@ -9,16 +9,16 @@ FROM alpine:latest AS build
 # Install dependencies
 RUN \
   apk update && \
-  apk upgrade && \
-  apk add \
-  alpine-sdk \
-  build-base  \
-  tcl-dev \
-  tk-dev \
-  mesa-dev \
-  jpeg-dev \
-  libjpeg-turbo-dev \
-  readline-dev
+  apk upgrade 
+#  apk add \
+#  alpine-sdk \
+#  build-base  \
+#  tcl-dev \
+#  tk-dev \
+#  mesa-dev \
+#  jpeg-dev \
+#  libjpeg-turbo-dev \
+#  readline-dev
 
 # Download latest release
 #RUN \
@@ -51,16 +51,15 @@ COPY run-test.sh /run-test.sh
 # Create a user and group for SQLite3 to avoid: Dockle CIS-DI-0001
 ENV \
   USER_SQLITE=sqlite \
-  GROUP_SQLITE=sqlite
+  GROUP_SQLITE=sqlite \
+  INPUTRC=/workspace
 RUN \
   addgroup -S $GROUP_SQLITE && \
   adduser  -S $USER_SQLITE -G $GROUP_SQLITE && \
-  adduser -S max -G $GROUP_SQLITE && \
   # Fix issue #32 (CVE-2022-3996)
   apk --no-cache upgrade && \
   apk add \
   sqlite \
-  rlwrap \
   readline 
 
 # Set user
