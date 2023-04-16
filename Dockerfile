@@ -59,6 +59,7 @@ RUN \
   apk --no-cache upgrade && \
   apk add \
   sqlite \
+  rlwrap \
   readline 
 
 # Set user
