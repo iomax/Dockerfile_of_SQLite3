@@ -21,31 +21,31 @@ RUN \
   readline-dev
 
 # Download latest release
-RUN \
-  wget \
-  -O sqlite.tar.gz \
-  https://www.sqlite.org/src/tarball/sqlite.tar.gz?r=release && \
-  tar xvfz sqlite.tar.gz
+#RUN \
+#  wget \
+#  -O sqlite.tar.gz \
+#  https://www.sqlite.org/src/tarball/sqlite.tar.gz?r=release && \
+#  tar xvfz sqlite.tar.gz
 
 # Configure and make SQLite3 binary
-RUN \
-  ./sqlite/configure --prefix=/usr --enable-readline&& \
-  make && \
-  make install && \
+#RUN \
+#  ./sqlite/configure --prefix=/usr --enable-readline&& \
+#  make && \
+#  make install && \
   # Smoke test
-  sqlite3 --version
+#  sqlite3 --version
 
 # Copy the test script and run it
 COPY run-test.sh /run-test.sh
 
-RUN /run-test.sh
+#RUN /run-test.sh
 
 # -----------------------------------------------------------------------------
 #  Main Stage
 # -----------------------------------------------------------------------------
 FROM alpine:latest
 
-COPY --from=build /usr/bin/sqlite3 /usr/bin/sqlite3
+#COPY --from=build /usr/bin/sqlite3 /usr/bin/sqlite3
 COPY run-test.sh /run-test.sh
 
 # Create a user and group for SQLite3 to avoid: Dockle CIS-DI-0001
@@ -58,6 +58,7 @@ RUN \
   # Fix issue #32 (CVE-2022-3996)
   apk --no-cache upgrade && \
   apk add \
+  sqlite \
   readline 
 
 # Set user
