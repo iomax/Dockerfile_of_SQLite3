@@ -55,6 +55,7 @@ ENV \
 RUN \
   addgroup -S $GROUP_SQLITE && \
   adduser  -S $USER_SQLITE -G $GROUP_SQLITE && \
+  adduser -S max -G $GROUP_SQLITE && \
   # Fix issue #32 (CVE-2022-3996)
   apk --no-cache upgrade && \
   apk add \
