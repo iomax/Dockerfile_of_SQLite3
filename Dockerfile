@@ -53,14 +53,16 @@ ENV \
   USER_SQLITE=sqlite \
   GROUP_SQLITE=sqlite \
   SQLITE_HISTORY=/workspace/.sqlite_history
+  TZ=Europe/Rome
 RUN \
   addgroup -S $GROUP_SQLITE && \
   adduser  -S $USER_SQLITE -G $GROUP_SQLITE && \
   # Fix issue #32 (CVE-2022-3996)
   apk --no-cache upgrade && \
-  apk add \
+  apk --no-cache add \
   sqlite \
-  readline 
+  readline \
+  tzdata
 
 # Set user
 USER $USER_SQLITE
