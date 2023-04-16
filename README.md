@@ -3,10 +3,6 @@
 
 Alpine Docker image of SQLite3 built from the latest source code.
 
-```bash
-docker pull keinos/sqlite3:latest
-```
-
 - Current SQLite3 version: [![SQLite Version](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FKEINOS%2FDockerfile_of_SQLite3%2Fmaster%2FSQLite3-shields.io-badge.json)](https://github.com/KEINOS/Dockerfile_of_SQLite3/blob/master/VERSION_SQLite3.txt)
   - [View Available Tags (SQLite version)](https://hub.docker.com/r/keinos/sqlite3/tags) @ DockerHub
 - Supported Architecture:
@@ -16,35 +12,21 @@ docker pull keinos/sqlite3:latest
 <details><summary>Image Information (Dockerfile, Security Scan, etc.)</summary>
 
 - Repositories/Registries:
-  - [Image Registry](https://hub.docker.com/r/keinos/sqlite3)  @ DockerHub
-  - [Dockerfile](https://github.com/KEINOS/Dockerfile_of_SQLite3/blob/master/Dockerfile) @ GitHub
-  - [Issues](https://github.com/KEINOS/Dockerfile_of_SQLite3/issues) @ GitHub
+  - [Dockerfile](https://github.com/iomax/Dockerfile_of_SQLite3/blob/master/Dockerfile) @ GitHub
 - Build Info:
   - Base Image: `alpine:latest`
   - SQLite3 Source: [https://www.sqlite.org/src/](https://www.sqlite.org/src/doc/trunk/README.md) @ SQLite.org
-  - Update Interval: [Once a week](https://github.com/KEINOS/Dockerfile_of_SQLite3/blob/master/.github/workflows/weekly-update.yml)
-- Basic Vulnerability Scan:
-  - [Snyk Docker Scan](https://github.com/KEINOS/Dockerfile_of_SQLite3/blob/master/.github/workflows/snyk_scan.yml) and [Azure Container Scan](https://github.com/KEINOS/Dockerfile_of_SQLite3/blob/master/.github/workflows/azure_scan.yml) on push, PR and merge.
-  - Scan Interval: Once a week.
-  - See the [Security overview](https://github.com/KEINOS/Dockerfile_of_SQLite3/security) for the details.
 
 </details>
 
 ## Usage
 
-### Pull the latest image
-
-Docker will pull the latest image when it's used. Though, you can pull (download) the latest image manually as below:
-
-```shellsession
-$ docker pull keinos/sqlite3:latest
-...
 ```
 
-Or, you can build the latest image locally as below:
+Build the latest image locally as below:
 
 ```shellsession
-$ docker build -t sqlite3:local https://github.com/KEINOS/Dockerfile_of_SQLite3.git
+$ docker build -t sqlite3:local https://github.com/iomax/Dockerfile_of_SQLite3.git
 ...
 ```
 
@@ -53,7 +35,7 @@ $ docker build -t sqlite3:local https://github.com/KEINOS/Dockerfile_of_SQLite3.
 Running `sqlite3` command inside the container interactively.
 
 ```shellsession
-$ docker run --rm -it -v "$(pwd):/workspace" -w /workspace keinos/sqlite3
+$ docker run --rm -it -v "$(pwd):/workspace" -w /workspace iomax/sqlite3
 SQLite version 3.28.0 2019-04-16 19:49:53
 Enter ".help" for usage hints.
 Connected to a transient in-memory database.
@@ -74,7 +56,7 @@ sample.db
 - Running `sqlite3 --version` command:
 
 ```shellsession
-$ docker run --rm keinos/sqlite3 sqlite3 --version
+$ docker run --rm iomax/sqlite3 sqlite3 --version
 3.38.2 2022-03-26 13:51:10 d33c709cc0af66bc5b6dc6216eba9f1f0b40960b9ae83694c986fbf4c1d6f08f
 ```
 
@@ -83,7 +65,7 @@ $ docker run --rm keinos/sqlite3 sqlite3 --version
 ```shellsession
 $ ls
 sample.db
-$ docker run --rm -it -v "$(pwd):/workspace" keinos/sqlite3 sqlite3 /workspace/sample.db -header -column 'SELECT rowid, * FROM table_sample;'
+$ docker run --rm -it -v "$(pwd):/workspace" iomax/sqlite3 sqlite3 /workspace/sample.db -header -column 'SELECT rowid, * FROM table_sample;'
 rowid  timestamp            description
 -----  -------------------  -----------------------
 1      2022-04-16 14:09:52  First sample data. Foo
@@ -94,12 +76,12 @@ rowid  timestamp            description
 
 ### Run test
 
-This container includes a [simple test script](https://github.com/KEINOS/Dockerfile_of_SQLite3/blob/master/run-test.sh).
+This container includes a [simple test script](https://github.com/iomax/Dockerfile_of_SQLite3/blob/master/run-test.sh).
 
 You can run the script to see if the container and `sqlite3` binary is working.
 
 ```shellsession
-$ docker run --rm keinos/sqlite3 /run-test.sh
+$ docker run --rm iomax/sqlite3 /run-test.sh
 - Creating test DB ... created
 rowid  timestamp            description
 -----  -------------------  -----------------------
@@ -115,13 +97,9 @@ $ echo $?
 0
 ```
 
-[Let us know](https://github.com/KEINOS/Dockerfile_of_SQLite3/issues) if you have any test to be included.
 
-## ToDo
-
-- [x] ~~ARM support for DockerHub~~ (Issue #[2](https://github.com/KEINOS/Dockerfile_of_SQLite3/issues/2), PR #[20](https://github.com/KEINOS/Dockerfile_of_SQLite3/pull/20))
 
 ## License
 
-- [MIT License](https://github.com/KEINOS/Dockerfile_of_SQLite3/blob/master/LICENSE.md) by [The Dockerfile of SQLite3 Contributors](https://github.com/KEINOS/Dockerfile_of_SQLite3/graphs/contributors).
+- [MIT License](https://github.com/iomax/Dockerfile_of_SQLite3/blob/master/LICENSE.md) by [The Dockerfile of SQLite3 Contributors](https://github.com/iomax/Dockerfile_of_SQLite3/graphs/contributors).
   - SQLite: [Public Domain](https://sqlite.org/copyright.html) by [D. Richard Hipp](https://en.wikipedia.org/wiki/D._Richard_Hipp) and [SQLite.org](https://sqlite.org/).

@@ -17,7 +17,8 @@ RUN \
   tk-dev \
   mesa-dev \
   jpeg-dev \
-  libjpeg-turbo-dev
+  libjpeg-turbo-dev \
+  readline-dev
 
 # Download latest release
 RUN \
@@ -55,10 +56,7 @@ RUN \
   addgroup -S $GROUP_SQLITE && \
   adduser  -S $USER_SQLITE -G $GROUP_SQLITE && \
   # Fix issue #32 (CVE-2022-3996)
-  apk --no-cache upgrade && \
-  apk upgrade && \
-  apk add \
-  rlwrap
+  apk --no-cache upgrade 
 
 # Set user
 USER $USER_SQLITE

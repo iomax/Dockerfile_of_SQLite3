@@ -23,7 +23,7 @@ set -eu
 # -----------------------------------------------------------------------------
 #  Constants
 # -----------------------------------------------------------------------------
-NAME_IMAGE="keinos/sqlite3"
+NAME_IMAGE="iomax/sqlite3"
 NAME_FILE_VERSION="VERSION_SQLite3.txt"
 NAME_MULTIARCH_BUILDER="multi-arch-build"
 COLOR_RED='\033[0;31m'
